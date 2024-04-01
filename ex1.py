@@ -1,9 +1,8 @@
 import random
-comp = random.randrange(0,9,1)
-
+comp = random.randint(0,9)
 num = 10
 while num:
-    user = input('Enter number')
+    user = input('Enter number: ')
     if comp < int(user):
         print('<')
     elif comp > int(user):
