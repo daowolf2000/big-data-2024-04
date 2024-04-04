@@ -25,6 +25,19 @@ def sum_list(func):
         return c
     return wrapper
 
+def my_cache(func):
+    """Кэш предыдущих вызовов функций"""
+    cache = {}
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        cache_key = args + tuple(kwargs.items())
+        if cache_key not in cache:
+            cache[cache_key] = func(*args, **kwargs)
+        return cache[cache_key]
+    return wrapper
+
+@print_args
+@my_cache
 @sum_list
 def sum(a,b):
     return a+b
